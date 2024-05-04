@@ -13,7 +13,7 @@ def askMoreQuestion(question):
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "根据原始问题提出3个相关且苏格拉底式的进一步问题，注意问题不要重复，有价值的，可以跟进，并写出的每个问题不超过 20 个字。"},
+        {"role": "system", "content": "根據原始問題提出3個相關且蘇格拉底式的進一步問題，注意問題不要重復，有價值的，可以跟進，並寫出的每個問題不超過 20 個字。"},
         {"role": "user", "content": question}
     ]
     )
@@ -26,7 +26,7 @@ def reWriteQuestion(question):
     completion = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
-        {"role": "system", "content": "退一步思考，理解问题后，将问题转化成2个可以用于搜索引擎搜索的关键词,使用空格隔开,以便我可以用于google进行搜索.只需要说关键词，不需要说其他内容"},
+        {"role": "system", "content": "退一步思考，理解問題後，將問題轉化成2個可以用於搜索引擎搜索的關鍵詞,使用空格隔開,以便我可以用於google進行搜索.只需要說關鍵詞，不需要說其他內容"},
         {"role": "user", "content": question}
     ]
     )
@@ -87,7 +87,7 @@ def searchWeb(keyword):
 ## 检索答案合成
 def AnswerGen(aa,question):
     realQuestion = """
-使用提供的由三重引号引起来的文章来回答问题。 如果在文章中找不到答案，请写“我找不到答案”。
+使用提供的由三重引號引起來的文章來回答問題。 如果在文章中找不到答案，請寫“我找不到答案”。
 
 \"\"\"{}\"\"\"
 \"\"\"{}\"\"\"
@@ -110,13 +110,13 @@ aa = []
 
 def main():
     question = input()
-    print("下面重写关键词======")
+    print("下面重寫關鍵詞======")
     keyword = reWriteQuestion(question)
-    print("下面进行web搜索得到答案======")
+    print("下面進行web搜索得到答案======")
     searchWeb(keyword)
-    print("下面生成合成内容======")
+    print("下面生成合成內容======")
     AnswerGen(aa,question)
-    print("下面生成3个新问题======")
+    print("下面生成3個新問題======")
     askMoreQuestion(question)
 
 main()
